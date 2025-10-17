@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { AuthService } from "../../services/auth.service";
 
 @Component({
     selector: 'app-login',
@@ -14,12 +15,16 @@ export class LoginComponent
 
     loginForm: FormGroup;
 
-    constructor(private fb: FormBuilder)
+    constructor(private fb: FormBuilder,private authService:AuthService)
     {
         this.loginForm = this.fb.group({
             username: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]+$/)]],
             password: ['', [Validators.required, Validators.minLength(8)]]
         });
+    }
+    
+    ngOnInit():void{
+
     }
 
     onSubmit(): void
@@ -30,6 +35,14 @@ export class LoginComponent
         {
             this.user = {...this.loginForm.value};
             //this.user.username = this.loginForm.get('username')?.value;
+            this.authService.login(this.user).subscribe({
+                next : (res) => {
+                    this.successMessage='User logged in successfully.';
+                },
+                error : (err) =>{
+                    this.errorMessage="Invalid username or password.";
+                }
+            })
             if(this.simulateBackendLoginError(this.user.username))
             {
                 //this.errorMessage = "Please fill out all required fields correctly.";
