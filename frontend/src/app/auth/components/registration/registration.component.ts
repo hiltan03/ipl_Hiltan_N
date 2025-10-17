@@ -26,6 +26,9 @@ export class RegistrationComponent
             email: ['', [Validators.required, Validators.email]]
         });
     }
+    ngOnInit():void{
+        
+    }
 
     onSubmit()
     {
