@@ -1,0 +1,36 @@
+<form [formGroup] = "registrationForm" (ngSubmit) = "onSubmit()">
+    
+    <label for = "fullName">Full Name</label>
+    <input type = "text" id = "fullName" name = "fullName" formControlName = "fullName" />
+    <div *ngIf = "f['fullName'].invalid && f['fullName'].touched">
+        <small *ngIf = "f['fullName']?.errors['required']">Full Name is required.</small>
+        <small *ngIf = "f['fullName']?.errors['pattern']">Full Name should not contain special characters.</small>
+    </div>
+
+    <label for = "username">Username</label>
+    <input type = "text" id = "username" name = "username" formControlName = "username" />
+    <div *ngIf = "f['username'].invalid && f['username'].touched">
+        <small *ngIf = "f['username']?.errors['required']">Username is required.</small>
+        <small *ngIf = "f['username']?.errors['pattern']">Username should not contain special characters.</small>
+    </div>
+
+    <label for = "email">Email</label>
+    <input type = "text" id = "email" name = "email" formControlName = "email" />
+    <div *ngIf = "f['email'].invalid && f['email'].touched">
+        <small *ngIf = "f['email']?.errors['required']">Email is required.</small>
+        <small *ngIf = "f['email']?.errors['pattern']">Email must be valid.</small>
+    </div>
+
+    <label for = "password">Password</label>
+    <input type = "text" id = "password" name = "password" formControlName = "password" />
+    <div *ngIf = "f['password'].invalid && f['password'].touched">
+        <small *ngIf = "f['password']?.errors['required']">Password is required.</small>
+        <small *ngIf = "f['password']?.errors['pattern']">Password should contain atleast one uppercase, one lowercase, one special character.</small>
+    </div>
+
+    <button type = "submit" [disabled] = "registrationForm.invalid">Register</button>
+    <div>
+        <p *ngIf = "successMessage">{{successMessage}}</p>
+        <p *ngIf = "errorMessage">{{errorMessage}}</p>
+    </div>
+</form>

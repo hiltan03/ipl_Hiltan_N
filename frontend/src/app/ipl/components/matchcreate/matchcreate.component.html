@@ -1,0 +1,54 @@
+<h3> Create Match</h3>
+<form [formGroup] = "matchForm" (ngSubmit) = "onSubmit()">
+
+    <label for = "firstTeamId">First Team Id</label>
+    <input type = "number" id = "firstTeamId" name = "firstTeamId" formControlName="firstTeamId">
+    <div>
+        <small *ngIf = "firstTeamId.invalid && firstTeamId.touched">First Team ID is required.</small>
+    </div>
+
+    <label for = "secondTeamId">Second Team Id</label>
+    <input type = "number" id = "secondTeamId" name = "secondTeamId" formControlName="secondTeamId">
+    <div>
+        <small *ngIf = "secondTeamId.invalid && secondTeamId.touched">Second Team ID is required.</small>
+    </div>
+
+    <label for = "matchDate">Match Date</label>
+    <input type = "date" id = "matchDate" name = "matchDate" formControlName = "matchDate">
+    <div>
+        <small *ngIf = "matchDate.invalid && matchDate.touched">Match Date is required.</small>
+    </div>
+
+    <label for = "venue">Venue</label>
+    <input type = "text" id = "venue" name = "venue" formControlName = "venue">
+    <div>
+        <small *ngIf = "venue.invalid && venue.touched">Venue is required.</small>
+    </div>
+
+    <label for = "result">Result</label>
+    <input type = "text" id = "result" name = "result" formControlName = "result">
+    <div>
+        <small *ngIf = "result.invalid && result.touched">Result is required.</small>
+    </div>
+
+    <label for = "status">Status</label>
+    <input type = "text" id = "status" name = "status" formControlName = "status">
+    <div>
+        <small *ngIf = "status.invalid && status.touched">Status is required.</small>
+    </div>
+
+    <label for = "winnerTeamId">Winner Team Id</label>
+    <input type = "number" id = "winnerTeamId" name = "winnerTeamId" formControlName = "winnerTeamId">
+    <div>
+        <small *ngIf = "winnerTeamId.invalid && winnerTeamId.touched">Winner Team Id is required.</small>
+    </div>
+
+    <button type = "submit" [disabled] = "matchForm.invalid">Create Match</button>
+    
+    <small *ngIf = "isSubmitted && matchForm.valid" class = "success">{{successMessage}}</small>
+    <small *ngIf = "isSubmitted && matchForm.invalid" class = "error">{{errorMessage}}</small>
+
+    <button type = "button" (click) = "resetForm()" id = "resetBtn">Reset</button>
+
+    
+</form>

@@ -1,0 +1,35 @@
+<h3> Create Team</h3>
+<form [formGroup] = "teamForm" (ngSubmit) = "onSubmit()">
+
+    <label for = "teamName">Team Name:</label>
+    <input type = "text" id = "teamName" name = "teamName" formControlName="teamName" required>
+    <div>
+        <small *ngIf = "teamName.invalid && teamName.touched">Team Name is required.</small>
+        <small *ngIf = "teamName?.errors?.['pattern']">Team name should not contain special characters.</small>
+    </div>
+
+    <label for = "location">Location:</label>
+    <input type = "text" id = "location" name = "location" formControlName = "location" required>
+    <div>
+        <small *ngIf = "location.invalid && location.touched">Location is required.</small>
+    </div>
+
+    <label for = "ownerName">Owner Name:</label>
+    <input type = "text" id = "ownerName" name = "ownerName" formControlName = "ownerName" required>
+    <div>
+        <small *ngIf = "ownerName.invalid && ownerName.touched">Owner Name is required.</small>
+    </div>
+
+    <label for = "establishmentYear">Establishment Year:</label>
+    <input type = "number" id = "establishmentYear" name = "establishmentYear" formControlName = "establishmentYear" required>
+    <div>
+        <small *ngIf = "establishmentYear.invalid && establishmentYear.touched">Establishment Year is required.</small>
+    </div>
+
+    <button type = "submit" [disabled] = "teamForm.invalid">Create Team</button>
+    
+    <small *ngIf = "isSubmitted && teamForm.valid" class = "success">{{successMessage}}</small>
+    <small *ngIf = "isSubmitted && teamForm.invalid" class = "error">{{errorMessage}}</small>
+
+    <button type = "button" (click) = "resetForm()" id = "resetBtn">Reset</button>
+</form>
