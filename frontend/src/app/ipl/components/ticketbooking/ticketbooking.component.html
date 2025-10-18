@@ -1,0 +1,30 @@
+<h3> Ticket Booking </h3>
+<form [formGroup] = "ticketBookingForm" (ngSubmit) = "onSubmit()">
+
+    <label for = "email">Email:</label>
+    <input type = "text" id = "email" name = "email" formControlName = "email">
+    <div *ngIf = "email.invalid">
+        <small *ngIf = "email.errors?.['required'] && email?.touched">Email is required.</small>
+        <small *ngIf = "email.errors?.['email']">Email must be valid.</small>
+    </div>
+
+    <label for = "matchId">Match ID:</label>
+    <input type = "number" id = "matchId" name = "matchId" formControlName = "matchId">
+    <div>
+        <small *ngIf = "matchId.invalid && matchId.touched">Match ID is required.</small>
+    </div>
+
+    <label for = "numberOfTickets">Number Of Tickets:</label>
+    <input type = "number" id = "numberOfTickets" name = "numberOfTickets" formControlName = "numberOfTickets">
+    <div *ngIf = "numberOfTickets.invalid">
+        <small *ngIf = "numberOfTickets.errors?.['required'] && email?.touched">Number Of Tickets is required.</small>
+        <small *ngIf = "numberOfTickets.errors?.['min']">Numbers of booked tickets must be atleast 1.</small>
+    </div>
+
+    <button type = "submit" [disabled] = "ticketBookingForm.invalid">Vote</button>
+    
+    <small *ngIf = "isSubmitted && ticketBookingForm.valid" class = "success">{{successMessage}}</small>
+    <small *ngIf = "isSubmitted && ticketBookingForm.invalid" class = "error">{{errorMessage}}</small>
+
+    <button type = "button" (click) = "resetForm()" id = "resetBtn">Reset</button>
+</form>

@@ -1,0 +1,68 @@
+<app-navbar> </app-navbar>
+<div>
+    <h2>Team List</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Owner</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let team of teams">
+                <td>{{team.teamId}}</td>
+                <td>{{team.teamName}}</td>
+                <td>{{team.location}}</td>
+                <td>{{team.ownerName}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Crickter List</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Team</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let cric of cricketers">
+                <td>{{cric.crickterId}}</td>
+                <td>{{cric.cricketerName}}</td>
+                <td>{{cric.age}}</td>
+                <td>{{cric.team?.name}}</td>    
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Matches List</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Date</th>
+                <th>Venue</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let match of matches">
+                <td>{{match.matchId}}</td>
+                <td>{{match.matchDate | date }}</td>
+                <td>{{match.venue}}</td> 
+            </tr>
+        </tbody>
+    </table>
+
+
+</div>
+
+<!-- 
+teamId: number;
+    teamName: string;
+    location: string;
+    ownerName: string; -->
